@@ -1,0 +1,17 @@
+log.js:12 (Glean.core.metrics.String) navigator.user_agent: Value length 117 exceeds maximum of 100.
+log.js:12 (Glean.core.metrics.String) navigator.user_agent: Value length 117 exceeds maximum of 100.
+log.js:15 (Glean.core.Upload.PingUploadManager) Ping d168730e-1346-483d-9606-b320124705c5 successfully sent 200.
+log.js:15 (Glean.core.Upload.PingUploadManager) Ping 61bc578a-78b4-461b-8959-e37ba8846cc9 successfully sent 200.
+log.js:15 (Glean.core.Upload.PingUploadManager) Ping b4bfaa97-8449-4f6f-80e5-17dac1681656 successfully sent 200.
+(function () {
+  "use strict";
+  /* Start of your code */
+  function greetMe(yourName) {
+    alert(`Hello ${yourName}`);
+  }
+
+  greetMe("World");
+  /* End of your code */
+})();
+
+undefined
