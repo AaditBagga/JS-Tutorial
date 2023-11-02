@@ -1,0 +1,334 @@
+const myHonda = {
+  color: "red",
+  wheels: 4,
+  engine: { cylinders: 4, size: 2.2 },
+};
+
+undefined
+function Car(make, model, year) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
+}
+
+undefined
+const myCar = new Car("Eagle", "Talon TSi", 1993);
+
+undefined
+const kenscar = new Car("Nissan", "300ZX", 1992);
+const vpgscar = new Car("Mazda", "Miata", 1990);
+
+undefined
+function Person(name, age, sex) {
+  this.name = name;
+  this.age = age;
+  this.sex = sex;
+}
+
+undefined
+const rand = new Person("Rand McKinnon", 33, "M");
+const ken = new Person("Ken Jones", 39, "M");
+
+undefined
+function Car(make, model, year, owner) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
+  this.owner = owner;
+}
+
+undefined
+const car1 = new Car("Eagle", "Talon TSi", 1993, rand);
+const car2 = new Car("Nissan", "300ZX", 1992, ken);
+
+undefined
+car2.owner.name;
+
+'Ken Jones'
+car1.color = "black";
+
+'black'
+// Animal properties and method encapsulation
+const Animal = {
+  type: "Invertebrates", // Default value of properties
+  displayType() {
+    // Method which will display type of Animal
+    console.log(this.type);
+  },
+};
+
+// Create new animal type called animal1
+const animal1 = Object.create(Animal);
+animal1.displayType(); // Logs: Invertebrates
+
+// Create new animal type called fish
+const fish = Object.create(Animal);
+fish.type = "Fishes";
+fish.displayType(); // Logs: Fishes
+
+VM58:6 Invertebrates
+VM58:6 Fishes
+undefined
+const myCar = {
+  make: "Ford",
+  model: "Mustang",
+  year: 1969,
+};
+
+undefined
+// Dot notation
+myCar.make = "Ford";
+myCar.model = "Mustang";
+myCar.year = 1969;
+
+// Bracket notation
+myCar["make"] = "Ford";
+myCar["model"] = "Mustang";
+myCar["year"] = 1969;
+
+1969
+const myObj = {};
+const str = "myString";
+const rand = Math.random();
+const anotherObj = {};
+
+// Create additional properties on myObj
+myObj.type = "Dot syntax for a key named type";
+myObj["date created"] = "This key has a space";
+myObj[str] = "This key is in variable str";
+myObj[rand] = "A random number is the key here";
+myObj[anotherObj] = "This key is object anotherObj";
+myObj[""] = "This key is an empty string";
+
+console.log(myObj);
+// {
+//   type: 'Dot syntax for a key named type',
+//   'date created': 'This key has a space',
+//   myString: 'This key is in variable str',
+//   '0.6398914448618778': 'A random number is the key here',
+//   '[object Object]': 'This key is object anotherObj',
+//   '': 'This key is an empty string'
+// }
+console.log(myObj.myString); // 'This key is in variable str'
+
+VM70:14 {type: 'Dot syntax for a key named type', date created: 'This key has a space', myString: 'This key is in variable str', 0.9429085089899358: 'A random number is the key here', [object Object]: 'This key is object anotherObj', …}
+VM70:23 This key is in variable str
+undefined
+str = "myString";
+myObj[str] = "This key is in variable str";
+
+console.log(myObj.str); // undefined
+
+console.log(myObj[str]); // 'This key is in variable str'
+console.log(myObj.myString); // 'This key is in variable str'
+
+VM74:1 Uncaught TypeError: Assignment to constant variable.
+    at <anonymous>:1:5
+(anonymous) @ VM74:1
+let str = "myString";
+myObj[str] = "This key is in variable str";
+
+console.log(myObj.str); // undefined
+
+console.log(myObj[str]); // 'This key is in variable str'
+console.log(myObj.myString); // 'This key is in variable str'
+
+VM82:1 Uncaught SyntaxError: Identifier 'str' has already been declared
+const str = "myString";
+myObj[str] = "This key is in variable str";
+
+console.log(myObj.str); // undefined
+
+console.log(myObj[str]); // 'This key is in variable str'
+console.log(myObj.myString); // 'This key is in variable str'
+
+VM93:4 undefined
+VM93:6 This key is in variable str
+VM93:7 This key is in variable str
+undefined
+let propertyName = "make";
+myCar[propertyName] = "Ford";
+
+// access different properties by changing the contents of the variable
+propertyName = "model";
+myCar[propertyName] = "Mustang";
+
+console.log(myCar); // { make: 'Ford', model: 'Mustang' }
+
+VM97:8 {make: 'Ford', model: 'Mustang', year: 1969}
+undefined
+myCar.nonexistentProperty; // undefined
+
+undefined
+function showProps(obj, objName) {
+  let result = "";
+  for (const i in obj) {
+    // Object.hasOwn() is used to exclude properties from the object's
+    // prototype chain and only show "own properties"
+    if (Object.hasOwn(obj, i)) {
+      result += `${objName}.${i} = ${obj[i]}\n`;
+    }
+  }
+  console.log(result);
+}
+
+undefined
+function showProps(obj, objName) {
+  let result = "";
+  Object.keys(obj).forEach((i) => {
+    result += `${objName}.${i} = ${obj[i]}\n`;
+  });
+  console.log(result);
+}
+
+undefined
+function listAllProperties(myObj) {
+  let objectToInspect = myObj;
+  let result = [];
+
+  while (objectToInspect !== null) {
+    result = result.concat(Object.getOwnPropertyNames(objectToInspect));
+    objectToInspect = Object.getPrototypeOf(objectToInspect);
+  }
+
+  return result;
+}
+
+undefined
+// Creates a new object, myobj, with two properties, a and b.
+const myobj = new Object();
+myobj.a = 5;
+myobj.b = 12;
+
+// Removes the a property, leaving myobj with only the b property.
+delete myobj.a;
+console.log("a" in myobj); // false
+
+VM119:8 false
+undefined
+Car.prototype.color = "red";
+console.log(car1.color); // "red"
+
+VM123:2 black
+undefined
+Car.prototype.color = "black";
+console.log(car1.color); // "black"
+
+VM142:2 black
+undefined
+objectName.methodName = functionName;
+
+const myObj = {
+  myMethod: function (params) {
+    // do something
+  },
+
+  // this works too!
+  myOtherMethod(params) {
+    // do something else
+  },
+};
+
+VM146:1 Uncaught ReferenceError: objectName is not defined
+    at <anonymous>:1:1
+(anonymous) @ VM146:1
+Car.prototype.displayCar = function () {
+  const result = `A Beautiful ${this.year} ${this.make} ${this.model}`;
+  console.log(result);
+};
+
+ƒ () {
+  const result = `A Beautiful ${this.year} ${this.make} ${this.model}`;
+  console.log(result);
+}
+car1.displayCar();
+car2.displayCar();
+
+VM150:3 A Beautiful 1993 Eagle Talon TSi
+VM150:3 A Beautiful 1992 Nissan 300ZX
+undefined
+const Manager = {
+  name: "Karina",
+  age: 27,
+  job: "Software Engineer",
+};
+const Intern = {
+  name: "Tyrone",
+  age: 21,
+  job: "Software Engineer Intern",
+};
+
+function sayHi() {
+  console.log(`Hello, my name is ${this.name}`);
+}
+
+// add sayHi function to both objects
+Manager.sayHi = sayHi;
+Intern.sayHi = sayHi;
+
+Manager.sayHi(); // Hello, my name is Karina
+Intern.sayHi(); // Hello, my name is Tyrone
+
+VM158:13 Hello, my name is Karina
+VM158:13 Hello, my name is Tyrone
+undefined
+const myObj = {
+  a: 7,
+  get b() {
+    return this.a + 1;
+  },
+  set c(x) {
+    this.a = x / 2;
+  },
+};
+
+console.log(myObj.a); // 7
+console.log(myObj.b); // 8, returned from the get b() method
+myObj.c = 50; // Calls the set c(x) method
+console.log(myObj.a); // 25
+
+VM162:11 7
+VM162:12 8
+VM162:14 25
+undefined
+const myObj = { a: 0 };
+
+Object.defineProperties(myObj, {
+  b: {
+    get() {
+      return this.a + 1;
+    },
+  },
+  c: {
+    set(x) {
+      this.a = x / 2;
+    },
+  },
+});
+
+myObj.c = 10; // Runs the setter, which assigns 10 / 2 (5) to the 'a' property
+console.log(myObj.b); // Runs the getter, which yields a + 1 or 6
+
+VM166:17 6
+undefined
+// Two variables, two distinct objects with the same properties
+const fruit = { name: "apple" };
+const fruitbear = { name: "apple" };
+
+fruit == fruitbear; // return false
+fruit === fruitbear; // return false
+
+false
+// Two variables, a single object
+const fruit = { name: "apple" };
+const fruitbear = fruit; // Assign fruit object reference to fruitbear
+
+// Here fruit and fruitbear are pointing to same object
+fruit == fruitbear; // return true
+fruit === fruitbear; // return true
+
+fruit.name = "grape";
+console.log(fruitbear); // { name: "grape" }; not { name: "apple" }
+
+VM174:10 {name: 'grape'}name: "grape"[[Prototype]]: Object
+undefined
