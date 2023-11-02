@@ -1,0 +1,299 @@
+for (let step = 0; step < 5; step++) {
+  // Runs 5 times, with values of step 0 through 4.
+  console.log("Walking east one step");
+}
+
+VM14:3 Walking east one step
+VM14:3 Walking east one step
+VM14:3 Walking east one step
+VM14:3 Walking east one step
+VM14:3 Walking east one step
+undefined
+function countSelected(selectObject) {
+  let numberSelected = 0;
+  for (let i = 0; i < selectObject.options.length; i++) {
+    if (selectObject.options[i].selected) {
+      numberSelected++;
+    }
+  }
+  return numberSelected;
+}
+
+const btn = document.getElementById("btn");
+
+btn.addEventListener("click", () => {
+  const musicTypes = document.selectForm.musicTypes;
+  console.log(`You have selected ${countSelected(musicTypes)} option(s).`);
+});
+
+VM18:13 Uncaught TypeError: Cannot read properties of null (reading 'addEventListener')
+    at <anonymous>:13:5
+(anonymous) @ VM18:13
+let i = 0;
+do {
+  i += 1;
+  console.log(i);
+} while (i < 5);
+
+VM22:4 1
+VM22:4 2
+VM22:4 3
+VM22:4 4
+VM22:4 5
+undefined
+let n = 0;
+let x = 0;
+while (n < 3) {
+  n++;
+  x += n;
+}
+
+6
+break;
+break label;
+
+VM30:1 Uncaught SyntaxError: Illegal break statement
+for (let i = 0; i < a.length; i++) {
+  if (a[i] === theValue) {
+    break;
+  }
+}
+
+VM34:1 Uncaught ReferenceError: a is not defined
+    at <anonymous>:1:21
+(anonymous) @ VM34:1
+for (let i = 0; i < a.length; i++) {
+  if (a[i] === theValue) {
+    break;
+  }
+}
+
+VM37:1 Uncaught ReferenceError: a is not defined
+    at <anonymous>:1:21
+(anonymous) @ VM37:1
+let a = 0;
+undefined
+for (let i = 0; i < a.length; i++) {
+  if (a[i] === theValue) {
+    break;
+  }
+}
+
+undefined
+let x = 0;
+let z = 0;
+labelCancelLoops: while (true) {
+  console.log("Outer loops:", x);
+  x += 1;
+  z = 1;
+  while (true) {
+    console.log("Inner loops:", z);
+    z += 1;
+    if (z === 10 && x === 10) {
+      break labelCancelLoops;
+    } else if (z === 10) {
+      break;
+    }
+  }
+}
+
+VM77:4 Outer loops: 0
+VM77:8 Inner loops: 1
+VM77:8 Inner loops: 2
+VM77:8 Inner loops: 3
+VM77:8 Inner loops: 4
+VM77:8 Inner loops: 5
+VM77:8 Inner loops: 6
+VM77:8 Inner loops: 7
+VM77:8 Inner loops: 8
+VM77:8 Inner loops: 9
+VM77:4 Outer loops: 1
+VM77:8 Inner loops: 1
+VM77:8 Inner loops: 2
+VM77:8 Inner loops: 3
+VM77:8 Inner loops: 4
+VM77:8 Inner loops: 5
+VM77:8 Inner loops: 6
+VM77:8 Inner loops: 7
+VM77:8 Inner loops: 8
+VM77:8 Inner loops: 9
+VM77:4 Outer loops: 2
+VM77:8 Inner loops: 1
+VM77:8 Inner loops: 2
+VM77:8 Inner loops: 3
+VM77:8 Inner loops: 4
+VM77:8 Inner loops: 5
+VM77:8 Inner loops: 6
+VM77:8 Inner loops: 7
+VM77:8 Inner loops: 8
+VM77:8 Inner loops: 9
+VM77:4 Outer loops: 3
+VM77:8 Inner loops: 1
+VM77:8 Inner loops: 2
+VM77:8 Inner loops: 3
+VM77:8 Inner loops: 4
+VM77:8 Inner loops: 5
+VM77:8 Inner loops: 6
+VM77:8 Inner loops: 7
+VM77:8 Inner loops: 8
+VM77:8 Inner loops: 9
+VM77:4 Outer loops: 4
+VM77:8 Inner loops: 1
+VM77:8 Inner loops: 2
+VM77:8 Inner loops: 3
+VM77:8 Inner loops: 4
+VM77:8 Inner loops: 5
+VM77:8 Inner loops: 6
+VM77:8 Inner loops: 7
+VM77:8 Inner loops: 8
+VM77:8 Inner loops: 9
+VM77:4 Outer loops: 5
+VM77:8 Inner loops: 1
+VM77:8 Inner loops: 2
+VM77:8 Inner loops: 3
+VM77:8 Inner loops: 4
+VM77:8 Inner loops: 5
+VM77:8 Inner loops: 6
+VM77:8 Inner loops: 7
+VM77:8 Inner loops: 8
+VM77:8 Inner loops: 9
+VM77:4 Outer loops: 6
+VM77:8 Inner loops: 1
+VM77:8 Inner loops: 2
+VM77:8 Inner loops: 3
+VM77:8 Inner loops: 4
+VM77:8 Inner loops: 5
+VM77:8 Inner loops: 6
+VM77:8 Inner loops: 7
+VM77:8 Inner loops: 8
+VM77:8 Inner loops: 9
+VM77:4 Outer loops: 7
+VM77:8 Inner loops: 1
+VM77:8 Inner loops: 2
+VM77:8 Inner loops: 3
+VM77:8 Inner loops: 4
+VM77:8 Inner loops: 5
+VM77:8 Inner loops: 6
+VM77:8 Inner loops: 7
+VM77:8 Inner loops: 8
+VM77:8 Inner loops: 9
+VM77:4 Outer loops: 8
+VM77:8 Inner loops: 1
+VM77:8 Inner loops: 2
+VM77:8 Inner loops: 3
+VM77:8 Inner loops: 4
+VM77:8 Inner loops: 5
+VM77:8 Inner loops: 6
+VM77:8 Inner loops: 7
+VM77:8 Inner loops: 8
+VM77:8 Inner loops: 9
+VM77:4 Outer loops: 9
+VM77:8 Inner loops: 1
+VM77:8 Inner loops: 2
+VM77:8 Inner loops: 3
+VM77:8 Inner loops: 4
+VM77:8 Inner loops: 5
+VM77:8 Inner loops: 6
+VM77:8 Inner loops: 7
+VM77:8 Inner loops: 8
+VM77:8 Inner loops: 9
+undefined
+let i = 0;
+let n = 0;
+while (i < 5) {
+  i++;
+  if (i === 3) {
+    continue;
+  }
+  n += i;
+  console.log(n);
+}
+// Logs:
+// 1 3 7 12
+
+VM81:9 1
+VM81:9 3
+VM81:9 7
+VM81:9 12
+undefined
+let i = 0;
+let j = 10;
+checkiandj: while (i < 4) {
+  console.log(i);
+  i += 1;
+  checkj: while (j > 4) {
+    console.log(j);
+    j -= 1;
+    if (j % 2 === 0) {
+      continue checkj;
+    }
+    console.log(j, "is odd.");
+  }
+  console.log("i =", i);
+  console.log("j =", j);
+}
+
+VM85:4 0
+VM85:7 10
+VM85:12 9 'is odd.'
+VM85:7 9
+VM85:7 8
+VM85:12 7 'is odd.'
+VM85:7 7
+VM85:7 6
+VM85:12 5 'is odd.'
+VM85:7 5
+VM85:14 i = 1
+VM85:15 j = 4
+VM85:4 1
+VM85:14 i = 2
+VM85:15 j = 4
+VM85:4 2
+VM85:14 i = 3
+VM85:15 j = 4
+VM85:4 3
+VM85:14 i = 4
+VM85:15 j = 4
+undefined
+function dumpProps(obj, objName) {
+  let result = "";
+  for (const i in obj) {
+    result += `${objName}.${i} = ${obj[i]}<br>`;
+  }
+  result += "<hr>";
+  return result;
+}
+
+undefined
+const arr = [3, 5, 7];
+arr.foo = "hello";
+
+for (const i in arr) {
+  console.log(i);
+}
+// "0" "1" "2" "foo"
+
+for (const i of arr) {
+  console.log(i);
+}
+// Logs: 3 5 7
+
+VM93:5 0
+VM93:5 1
+VM93:5 2
+VM93:5 foo
+VM93:10 3
+VM93:10 5
+VM93:10 7
+undefined
+const obj = { foo: 1, bar: 2 };
+
+for (const [key, val] of Object.entries(obj)) {
+  console.log(key, val);
+}
+// "foo" 1
+// "bar" 2
+
+VM97:4 foo 1
+VM97:4 bar 2
+undefined
