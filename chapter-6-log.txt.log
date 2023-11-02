@@ -1,0 +1,373 @@
+const x = 1 + 2 * 3;
+const y = 2 * 3 + 1;
+
+undefined
+const obj = {};
+
+obj.x = 3;
+console.log(obj.x); // Prints 3.
+console.log(obj); // Prints { x: 3 }.
+
+const key = "y";
+obj[key] = 5;
+console.log(obj[key]); // Prints 5.
+console.log(obj); // Prints { x: 3, y: 5 }.
+
+VM26:4 3
+VM26:5 {x: 3}
+VM26:9 5
+VM26:10 {x: 3, y: 5}
+undefined
+const val = 0;
+val.x = 3;
+
+console.log(val.x); // Prints undefined.
+console.log(val); // Prints 0.
+
+VM30:4 undefined
+VM30:5 0
+undefined
+const foo = ["one", "two", "three"];
+
+const one = foo[0];
+const two = foo[1];
+const three = foo[2];
+
+undefined
+const [one, two, three] = foo;
+
+undefined
+// Declares a variable x and initializes it to the result of f().
+// The result of the x = f() assignment expression is discarded.
+let x = f();
+
+x = g(); // Reassigns the variable x to the result of g().
+
+VM42:1 Uncaught SyntaxError: Identifier 'x' has already been declared
+// Declares a variable x and initializes it to the result of f().
+// The result of the x = f() assignment expression is discarded.
+let b = f();
+
+b = g(); // Reassigns the variable x to the result of g().
+
+VM52:3 Uncaught ReferenceError: f is not defined
+    at <anonymous>:3:9
+(anonymous) @ VM52:3
+let x;
+const y = (x = f()); // Or equivalently: const y = x = f();
+console.log(y); // Logs the return value of the assignment x = f().
+
+console.log(x = f()); // Logs the return value directly.
+
+// An assignment expression can be nested in any place
+// where expressions are generally allowed,
+// such as array literals' elements or as function calls' arguments.
+console.log([0, x = f(), 0]);
+console.log(f(0, x = f(), 0));
+
+VM56:1 Uncaught SyntaxError: Identifier 'x' has already been declared
+let u;
+const v = (u = f()); // Or equivalently: const y = x = f();
+console.log(v); // Logs the return value of the assignment x = f().
+
+console.log(u = f()); // Logs the return value directly.
+
+// An assignment expression can be nested in any place
+// where expressions are generally allowed,
+// such as array literals' elements or as function calls' arguments.
+console.log([0, u = f(), 0]);
+console.log(f(0, u = f(), 0));
+
+VM111:2 Uncaught ReferenceError: f is not defined
+    at <anonymous>:2:11
+(anonymous) @ VM111:2
+function f() {
+  console.log("F!");
+  return 2;
+}
+function g() {
+  console.log("G!");
+  return 3;
+}
+let x, y;
+
+VM115:1 Uncaught SyntaxError: Identifier 'x' has already been declared
+function f() {
+  console.log("F!");
+  return 2;
+}
+function g() {
+  console.log("G!");
+  return 3;
+}
+let n, m;
+
+undefined
+m = n = f();
+m = [f(), n = g()];
+n[f()] = g();
+
+VM125:2 F!
+VM125:2 F!
+VM125:6 G!
+VM125:2 F!
+VM125:6 G!
+3
+const z = y = x = f();
+
+VM125:2 F!
+VM156:1 Uncaught TypeError: Assignment to constant variable.
+    at <anonymous>:1:17
+(anonymous) @ VM156:1
+const z = y = x = f();
+
+VM125:2 F!
+VM160:1 Uncaught TypeError: Assignment to constant variable.
+    at <anonymous>:1:17
+(anonymous) @ VM160:1
+const var1 = 3;
+const var2 = 4;
+
+undefined
+1 / 2; // 0.5
+1 / 2 === 1.0 / 2.0; // this is true
+
+true
+const a1 = true && true; // t && t returns true
+const a2 = true && false; // t && f returns false
+const a3 = false && true; // f && t returns false
+const a4 = false && 3 === 4; // f && f returns false
+const a5 = "Cat" && "Dog"; // t && t returns Dog
+const a6 = false && "Cat"; // f && t returns false
+const a7 = "Cat" && false; // t && f returns false
+
+undefined
+const a1 = true && true; // t && t returns true
+undefined
+const o1 = true || true; // t || t returns true
+const o2 = false || true; // f || t returns true
+const o3 = true || false; // t || f returns true
+const o4 = false || 3 === 4; // f || f returns false
+const o5 = "Cat" || "Dog"; // t || t returns Cat
+const o6 = false || "Cat"; // f || t returns Cat
+const o7 = "Cat" || false; // t || f returns Cat
+
+undefined
+const n1 = !true; // !t returns false
+const n2 = !false; // !f returns true
+const n3 = !"Cat"; // !t returns false
+
+undefined
+// BigInt addition
+const a = 1n + 2n; // 3n
+// Division with BigInts round towards zero
+const b = 1n / 2n; // 0n
+// Bitwise operations with BigInts do not truncate either side
+const c = 40000000000000000n >> 2n; // 10000000000000000n
+
+VM188:1 Uncaught SyntaxError: Identifier 'b' has already been declared
+// BigInt addition
+const p = 1n + 2n; // 3n
+// Division with BigInts round towards zero
+const q = 1n / 2n; // 0n
+// Bitwise operations with BigInts do not truncate either side
+const r = 40000000000000000n >> 2n; // 10000000000000000n
+
+undefined
+const d = 8n >>> 2n; // TypeError: BigInts have no unsigned right shift, use >> instead
+
+VM203:1 Uncaught TypeError: BigInts have no unsigned right shift, use >> instead
+    at <anonymous>:1:14
+(anonymous) @ VM203:1
+const d = 8n >>> 2n; // TypeError: BigInts have no unsigned right shift, use >> instead
+
+VM207:1 Uncaught TypeError: BigInts have no unsigned right shift, use >> instead
+    at <anonymous>:1:14
+(anonymous) @ VM207:1
+const a = 1n + 2; // TypeError: Cannot mix BigInt and other types
+
+VM211:1 Uncaught TypeError: Cannot mix BigInt and other types, use explicit conversions
+    at <anonymous>:1:14
+(anonymous) @ VM211:1
+const a = Number(1n) + 2; // 3
+const b = 1n + BigInt(2); // 3n
+
+VM215:1 Uncaught SyntaxError: Identifier 'b' has already been declared
+const p = Number(1n) + 2; // 3
+const q = 1n + BigInt(2); // 3n
+
+undefined
+const p = 1n > 2; // false
+const q = 3 > 2n; // true
+
+undefined
+console.log("my " + "string"); // console logs the string "my string".
+
+VM233:1 my string
+undefined
+let mystring = "alpha";
+mystring += "bet"; // evaluates to "alphabet" and assigns this value to mystring.
+
+'alphabet'
+const status = age >= 18 ? "adult" : "minor";
+
+VM241:1 Uncaught ReferenceError: age is not defined
+    at <anonymous>:1:16
+(anonymous) @ VM241:1
+const age = 19; const status = age >= 18 ? "adult" : "minor";
+
+undefined
+const x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const a = [x, x, x, x, x];
+
+for (let i = 0, j = 9; i <= j; i++, j--) {
+  //                              ^
+  console.log(`a[${i}][${j}]= ${a[i][j]}`);
+}
+
+VM288:6 a[0][9]= 9
+VM288:6 a[1][8]= 8
+VM288:6 a[2][7]= 7
+VM288:6 a[3][6]= 6
+VM288:6 a[4][5]= 5
+undefined
+delete object.property;
+delete object[propertyKey];
+delete objectName[index];
+
+VM292:1 Uncaught ReferenceError: object is not defined
+    at <anonymous>:1:1
+(anonymous) @ VM292:1
+delete Math.PI; // returns false (cannot delete non-configurable properties)
+
+const myObj = { h: 4 };
+delete myObj.h; // returns true (can delete user-defined properties)
+
+true
+const myFun = new Function("5 + 2");
+const shape = "round";
+const size = 1;
+const foo = ["Apple", "Mango", "Orange"];
+const today = new Date();
+
+VM300:1 Uncaught EvalError: Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'report-sample' 'self' www.google-analytics.com/analytics.js assets.codepen.io production-assets.codepen.io https://js.stripe.com 'sha256-uogddBLIKmJa413dyT0iPejBg3VFcO+4x6B+vw3jng0=' 'sha256-EehWlTYp7Bqy57gDeQttaWKp0ukTTEUKGP44h8GVeik='".
+
+    at new Function (<anonymous>)
+    at <anonymous>:1:15
+(anonymous) @ VM300:1
+
+const shape = "round";
+const size = 1;
+const foo = ["Apple", "Mango", "Orange"];
+const today = new Date();
+
+undefined
+
+typeof shape; // returns "string"
+typeof size; // returns "number"
+typeof foo; // returns "object"
+typeof today; // returns "object"
+typeof doesntExist; // returns "undefined"
+
+'undefined'
+
+typeof shape; // returns "string"
+typeof size; // returns "number"
+typeof foo; // returns "object"
+typeof today; // returns "object"
+
+
+'object'
+typeof true; // returns "boolean"
+
+
+'boolean'
+
+typeof null; // returns "object"
+
+'object'
+typeof 62; // returns "number"
+
+
+'number'
+
+typeof "Hello world"; // returns "string"
+
+'string'
+typeof document.lastModified; // returns "string"
+typeof window.length; // returns "number"
+typeof Math.LN2; // returns "number"
+
+'number'
+typeof blur; // returns "function"
+typeof eval; // returns "function"
+typeof parseInt; // returns "function"
+typeof shape.split; // returns "function"
+
+'function'
+typeof Date; // returns "function"
+typeof Function; // returns "function"
+typeof Math; // returns "object"
+typeof Option; // returns "function"
+typeof String; // returns "function"
+
+'function'
+// Arrays
+const trees = ["redwood", "bay", "cedar", "oak", "maple"];
+0 in trees; // returns true
+3 in trees; // returns true
+6 in trees; // returns false
+"bay" in trees; // returns false
+// (you must specify the index number, not the value at that index)
+"length" in trees; // returns true (length is an Array property)
+
+// built-in objects
+"PI" in Math; // returns true
+const myString = new String("coral");
+"length" in myString; // returns true
+
+// Custom objects
+const mycar = { make: "Honda", model: "Accord", year: 1998 };
+"make" in mycar; // returns true
+"model" in mycar; // returns true
+
+true
+const theDay = new Date(1995, 12, 17);
+if (theDay instanceof Date) {
+  // statements to execute
+}
+
+undefined
+function validate(obj, lowval, hival) {
+  if (obj.value < lowval || obj.value > hival) {
+    console.log("Invalid Value!");
+  }
+}
+
+undefined
+const a = 1;
+const b = 2;
+const c = 3;
+
+// default precedence
+a + b * c     // 7
+// evaluated by default like this
+a + (b * c)   // 7
+
+// now overriding precedence
+// addition before multiplication
+(a + b) * c   // 9
+
+// which is equivalent to
+a * c + b * c // 9
+
+VM365:1 Uncaught SyntaxError: Identifier 'b' has already been declared
+const objectName = new ObjectType(param1, param2, /* …, */ paramN);
+
+VM369:1 Uncaught ReferenceError: ObjectType is not defined
+    at <anonymous>:1:20
+(anonymous) @ VM369:1
+super(args); // calls the parent constructor.
+super.functionOnParent(args);
+
+VM373:1 Uncaught SyntaxError: 'super' keyword unexpected here
