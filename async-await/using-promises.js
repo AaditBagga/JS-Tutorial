@@ -204,6 +204,7 @@ async function doTask3_await(input)
     await doTask2_await();
 }
 
+
 /*
  * taskMethod controls which of 4 different implementations of the (Task1,Task2,Task3) sequence is executed.
  */

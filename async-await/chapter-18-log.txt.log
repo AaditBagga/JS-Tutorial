@@ -1,0 +1,9 @@
+using-promises.js:292 
+Start - async await version
+using-promises.js:77 doTask1_Async: complete in 5002 ms.  Return value: 1
+using-promises.js:185 extra print #1
+using-promises.js:101 doTask2_Async: complete in 5000 ms.  Return value: 2
+using-promises.js:187 extra print #1
+using-promises.js:125 doTask3_Async: complete in 5005 ms.  Return value: 3
+using-promises.js:189 extra print #1
+using-promises.js:191 task3Result: 3
