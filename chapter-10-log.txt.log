@@ -1,0 +1,453 @@
+const arr = [42];
+
+undefined
+const arr = [42];
+
+undefined
+const arr = [];
+arr.length = 42;
+
+42
+const arr = Array(9.3); // RangeError: Invalid array length
+
+VM34:1 Uncaught RangeError: Invalid array length
+    at <anonymous>:1:13
+(anonymous) @ VM34:1
+const wisenArray = Array.of(9.3); // wisenArray contains only one element 9.3
+
+undefined
+const arr = ["one", "two", "three"];
+arr[2]; // three
+arr["length"]; // 3
+
+3
+const arr = [];
+arr[3.4] = "Oranges";
+console.log(arr.length); // 0
+console.log(Object.hasOwn(arr, 3.4)); // true
+
+VM50:3 0
+VM50:4 true
+undefined
+const cats = [];
+cats[30] = ["Dusty"];
+console.log(cats.length); // 31
+
+VM54:3 31
+undefined
+const cats = ["Dusty", "Misty", "Twiggy"];
+console.log(cats.length); // 3
+
+cats.length = 2;
+console.log(cats); // [ 'Dusty', 'Misty' ] - Twiggy has been removed
+
+cats.length = 0;
+console.log(cats); // []; the cats array is empty
+
+cats.length = 3;
+console.log(cats); // [ <3 empty items> ]
+
+VM58:2 3
+VM58:5 (2) ['Dusty', 'Misty']
+VM58:8 []
+VM58:11 (3) [empty × 3]
+undefined
+const cats = ["Dusty", "Misty", "Twiggy"];
+console.log(cats.length); // 3
+
+cats.length = 2;
+console.log(cats); // [ 'Dusty', 'Misty' ] - Twiggy has been removed
+
+cats.length = 0;
+console.log(cats); // []; the cats array is empty
+
+cats.length = 3;
+console.log(cats); // [ <3 empty items> ]
+
+VM62:2 3
+VM62:5 (2) ['Dusty', 'Misty']
+VM62:8 []
+VM62:11 (3) [empty × 3]
+undefined
+const colors = ["red", "green", "blue"];
+for (let i = 0; i < colors.length; i++) {
+  console.log(colors[i]);
+}
+
+VM66:3 red
+VM66:3 green
+VM66:3 blue
+undefined
+const divs = document.getElementsByTagName("div");
+for (let i = 0, div; (div = divs[i]); i++) {
+  /* Process div in some way */
+}
+
+undefined
+const colors = ["red", "green", "blue"];
+colors.forEach((color) => console.log(color));
+// red
+// green
+// blue
+
+VM74:2 red
+VM74:2 green
+VM74:2 blue
+undefined
+const sparseArray = ["first", "second", , "fourth"];
+
+sparseArray.forEach((element) => {
+  console.log(element);
+});
+// Logs:
+// first
+// second
+// fourth
+
+if (sparseArray[2] === undefined) {
+  console.log("sparseArray[2] is undefined"); // true
+}
+
+const nonsparseArray = ["first", "second", undefined, "fourth"];
+
+nonsparseArray.forEach((element) => {
+  console.log(element);
+});
+// Logs:
+// first
+// second
+// undefined
+// fourth
+
+VM78:4 first
+VM78:4 second
+VM78:4 fourth
+VM78:12 sparseArray[2] is undefined
+VM78:18 first
+VM78:18 second
+VM78:18 undefined
+VM78:18 fourth
+undefined
+let myArray = ["1", "2", "3"];
+myArray = myArray.concat("a", "b", "c");
+// myArray is now ["1", "2", "3", "a", "b", "c"]
+
+(6) ['1', '2', '3', 'a', 'b', 'c']
+const myArray = ["Wind", "Rain", "Fire"];
+const list = myArray.join(" - "); // list is "Wind - Rain - Fire"
+
+VM86:1 Uncaught SyntaxError: Identifier 'myArray' has already been declared
+const aArray = ["Wind", "Rain", "Fire"];
+const list = aArray.join(" - "); // list is "Wind - Rain - Fire"
+
+undefined
+const bArray = ["1", "2"];
+bArray.push("3"); // myArray is now ["1", "2", "3"]
+
+3
+const myArray = ["1", "2", "3"];
+const last = myArray.pop();
+// myArray is now ["1", "2"], last = "3"
+
+VM116:1 Uncaught SyntaxError: Identifier 'myArray' has already been declared
+const bArray = ["1", "2", "3"];
+const last = bArray.pop();
+// myArray is now ["1", "2"], last = "3"
+
+undefined
+const bArray = ["1", "2", "3"];
+const first = bArray.shift();
+// myArray is now ["2", "3"], first is "1"
+
+undefined
+const bArray = ["1", "2", "3"];
+bArray.unshift("4", "5");
+// myArray becomes ["4", "5", "1", "2", "3"]
+
+5
+let myArray = ["a", "b", "c", "d", "e"];
+myArray = myArray.slice(1, 4); // [ "b", "c", "d"]
+// starts at index 1 and extracts all elements
+// until index 3
+
+(3) ['b', 'c', 'd']
+const myArray = ["a", "b", "c", "d", "e"];
+myArray.at(-2); // "d", the second-last element of myArray
+
+VM168:1 Uncaught SyntaxError: Identifier 'myArray' has already been declared
+let myArray = ["a", "b", "c", "d", "e"];
+myArray.at(-2); // "d", the second-last element of myArray
+
+'d'
+let myArray = ["1", "2", "3", "4", "5"];
+myArray.splice(1, 3, "a", "b", "c", "d");
+// myArray is now ["1", "a", "b", "c", "d", "5"]
+// This code started at index one (or where the "2" was),
+// removed 3 elements there, and then inserted all consecutive
+// elements in its place.
+
+(3) ['2', '3', '4']0: "2"1: "3"2: "4"length: 3[[Prototype]]: Array(0)
+let myArray = ["1", "2", "3"];
+myArray.reverse();
+// transposes the array so that myArray = ["3", "2", "1"]
+
+(3) ['3', '2', '1']
+let myArray = [1, 2, [3, 4]];
+myArray = myArray.flat();
+// myArray is now [1, 2, 3, 4], since the [3, 4] subarray is flattened
+
+(4) [1, 2, 3, 4]
+let myArray = ["Wind", "Rain", "Fire"];
+myArray.sort();
+// sorts the array so that myArray = ["Fire", "Rain", "Wind"]
+
+(3) ['Fire', 'Rain', 'Wind']
+const sortFn = (a, b) => {
+  if (a[a.length - 1] < b[b.length - 1]) {
+    return -1; // Negative number => a < b, a comes before b
+  } else if (a[a.length - 1] > b[b.length - 1]) {
+    return 1; // Positive number => a > b, a comes after b
+  }
+  return 0; // Zero => a = b, a and b keep their original order
+};
+myArray.sort(sortFn);
+// sorts the array so that myArray = ["Wind","Fire","Rain"]
+
+(3) ['Wind', 'Fire', 'Rain']
+const a = ["a", "b", "a", "b", "a"];
+console.log(a.indexOf("b")); // 1
+
+// Now try again, starting from after the last match
+console.log(a.indexOf("b", 2)); // 3
+console.log(a.indexOf("z")); // -1, because 'z' was not found
+
+VM230:2 1
+VM230:5 3
+VM230:6 -1
+undefined
+let a = ["a", "b", "c", "d", "a", "b"];
+console.log(a.lastIndexOf("b")); // 5
+
+// Now try again, starting from before the last match
+console.log(a.lastIndexOf("b", 4)); // 1
+console.log(a.lastIndexOf("z")); // -1
+
+VM242:1 Uncaught SyntaxError: Identifier 'a' has already been declared
+const a = ["a", "b", "c", "d", "a", "b"];
+console.log(a.lastIndexOf("b")); // 5
+
+// Now try again, starting from before the last match
+console.log(a.lastIndexOf("b", 4)); // 1
+console.log(a.lastIndexOf("z")); // -1
+
+VM246:2 5
+VM246:5 1
+VM246:6 -1
+undefined
+const a = ["a", "b", "c"];
+a.forEach((element) => {
+  console.log(element);
+});
+// Logs:
+// a
+// b
+// c
+
+VM250:3 a
+VM250:3 b
+VM250:3 c
+undefined
+const a1 = ["a", "b", "c"];
+const a2 = a1.map((item) => item.toUpperCase());
+console.log(a2); // ['A', 'B', 'C']
+
+VM254:3 (3) ['A', 'B', 'C']
+undefined
+const a1 = ["a", "b", "c"];
+const a2 = a1.flatMap((item) => [item.toUpperCase(), item.toLowerCase()]);
+console.log(a2); // ['A', 'a', 'B', 'b', 'C', 'c']
+
+VM258:3 (6) ['A', 'a', 'B', 'b', 'C', 'c']
+undefined
+const a1 = ["a", 10, "b", 20, "c", 30];
+const a2 = a1.filter((item) => typeof item === "number");
+console.log(a2); // [10, 20, 30]
+
+VM262:3 (3) [10, 20, 30]
+undefined
+const a1 = ["a", 10, "b", 20, "c", 30];
+const i = a1.find((item) => typeof item === "number");
+console.log(i); // 10
+
+VM266:3 10
+undefined
+const a1 = ["a", 10, "b", 20, "c", 30];
+const i = a1.find((item) => typeof item === "number");
+console.log(i); // 10
+
+VM270:3 10
+undefined
+const a1 = ["a", 10, "b", 20, "c", 30];
+const i = a1.findIndex((item) => typeof item === "number");
+console.log(i); // 1
+
+VM274:3 1
+undefined
+const a1 = ["a", 10, "b", 20, "c", 30];
+const i = a1.findLastIndex((item) => typeof item === "number");
+console.log(i); // 5
+
+VM278:3 5
+undefined
+function isNumber(value) {
+  return typeof value === "number";
+}
+const a1 = [1, 2, 3];
+console.log(a1.every(isNumber)); // true
+const a2 = [1, "2", 3];
+console.log(a2.every(isNumber)); // false
+
+VM282:5 true
+VM282:7 false
+undefined
+function isNumber(value) {
+  return typeof value === "number";
+}
+const a1 = [1, 2, 3];
+console.log(a1.some(isNumber)); // true
+const a2 = [1, "2", 3];
+console.log(a2.some(isNumber)); // true
+const a3 = ["1", "2", "3"];
+console.log(a3.some(isNumber)); // false
+
+VM286:5 true
+VM286:7 true
+VM286:9 false
+undefined
+const a = [10, 20, 30];
+const total = a.reduce(
+  (accumulator, currentValue) => accumulator + currentValue,
+  0,
+);
+console.log(total); // 60
+
+VM290:6 60
+undefined
+const inventory = [
+  { name: "asparagus", type: "vegetables" },
+  { name: "bananas", type: "fruit" },
+  { name: "goat", type: "meat" },
+  { name: "cherries", type: "fruit" },
+  { name: "fish", type: "meat" },
+];
+
+undefined
+const result = Object.groupBy(inventory, ({ type }) => type);
+console.log(result.vegetables);
+// [{ name: "asparagus", type: "vegetables" }]
+
+VM298:2 [{…}]0: {name: 'asparagus', type: 'vegetables'}length: 1[[Prototype]]: Array(0)
+undefined
+// Array constructor:
+const a = Array(5); // [ <5 empty items> ]
+
+// Consecutive commas in array literal:
+const b = [1, 2, , , 5]; // [ 1, 2, <2 empty items>, 5 ]
+
+// Directly setting a slot with index greater than array.length:
+const c = [1, 2];
+c[4] = 5; // [ 1, 2, <2 empty items>, 5 ]
+
+// Elongating an array by directly setting .length:
+const d = [1, 2];
+d.length = 5; // [ 1, 2, <3 empty items> ]
+
+// Deleting an element:
+const e = [1, 2, 3, 4, 5];
+delete e[2]; // [ 1, 2, <1 empty item>, 4, 5 ]
+
+true
+const arr = [1, 2, , , 5]; // Create a sparse array
+
+// Indexed access
+console.log(arr[2]); // undefined
+
+// For...of
+for (const i of arr) {
+  console.log(i);
+}
+// Logs: 1 2 undefined undefined 5
+
+// Spreading
+const another = [...arr]; // "another" is [ 1, 2, undefined, undefined, 5 ]
+
+VM306:4 undefined
+VM306:8 1
+VM306:8 2
+VM306:8 undefined
+VM306:8 undefined
+VM306:8 5
+undefined
+const mapped = arr.map((i) => i + 1); // [ 2, 3, <2 empty items>, 6 ]
+arr.forEach((i) => console.log(i)); // 1 2 5
+const filtered = arr.filter(() => true); // [ 1, 2, 5 ]
+const hasFalsy = arr.some((k) => !k); // false
+
+// Property enumeration
+const keys = Object.keys(arr); // [ '0', '1', '4' ]
+for (const key in arr) {
+  console.log(key);
+}
+// Logs: '0' '1' '4'
+// Spreading into an object uses property enumeration, not the array's iterator
+const objectSpread = { ...arr }; // { '0': 1, '1': 2, '4': 5 }
+
+VM310:2 1
+VM310:2 2
+VM310:2 5
+VM310:9 0
+VM310:9 1
+VM310:9 4
+undefined
+const a = new Array(4);
+for (let i = 0; i < 4; i++) {
+  a[i] = new Array(4);
+  for (let j = 0; j < 4; j++) {
+    a[i][j] = `[${i}, ${j}]`;
+  }
+}
+
+'[3, 3]'
+const arr = [1, 2, 3];
+arr.property = "value";
+console.log(arr.property); // "value"
+
+VM318:3 value
+undefined
+function printArguments() {
+  arguments.forEach((item) => {
+    console.log(item);
+  }); // TypeError: arguments.forEach is not a function
+}
+
+undefined
+function printArguments() {
+  Array.prototype.forEach.call(arguments, (item) => {
+    console.log(item);
+  });
+}
+
+undefined
+Array.prototype.forEach.call("a string", (chr) => {
+  console.log(chr);
+});
+
+VM330:2 a
+VM330:2  
+VM330:2 s
+VM330:2 t
+VM330:2 r
+VM330:2 i
+VM330:2 n
+VM330:2 g
+undefined
