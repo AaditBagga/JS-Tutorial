@@ -1,0 +1,379 @@
+const o = {
+  a: 1,
+  b: 2,
+  // __proto__ sets the [[Prototype]]. It's specified here
+  // as another object literal.
+  __proto__: {
+    b: 3,
+    c: 4,
+  },
+};
+
+// o.[[Prototype]] has properties b and c.
+// o.[[Prototype]].[[Prototype]] is Object.prototype (we will explain
+// what that means later).
+// Finally, o.[[Prototype]].[[Prototype]].[[Prototype]] is null.
+// This is the end of the prototype chain, as null,
+// by definition, has no [[Prototype]].
+// Thus, the full prototype chain looks like:
+// { a: 1, b: 2 } ---> { b: 3, c: 4 } ---> Object.prototype ---> null
+
+console.log(o.a); // 1
+// Is there an 'a' own property on o? Yes, and its value is 1.
+
+console.log(o.b); // 2
+// Is there a 'b' own property on o? Yes, and its value is 2.
+// The prototype also has a 'b' property, but it's not visited.
+// This is called Property Shadowing
+
+console.log(o.c); // 4
+// Is there a 'c' own property on o? No, check its prototype.
+// Is there a 'c' own property on o.[[Prototype]]? Yes, its value is 4.
+
+console.log(o.d); // undefined
+// Is there a 'd' own property on o? No, check its prototype.
+// Is there a 'd' own property on o.[[Prototype]]? No, check its prototype.
+// o.[[Prototype]].[[Prototype]] is Object.prototype and
+// there is no 'd' property by default, check its prototype.
+// o.[[Prototype]].[[Prototype]].[[Prototype]] is null, stop searching,
+// no property found, return undefined.
+
+VM14:21 1
+VM14:24 2
+VM14:29 4
+VM14:33 undefined
+undefined
+const o = {
+  a: 1,
+  b: 2,
+  // __proto__ sets the [[Prototype]]. It's specified here
+  // as another object literal.
+  __proto__: {
+    b: 3,
+    c: 4,
+    __proto__: {
+      d: 5,
+    },
+  },
+};
+
+// { a: 1, b: 2 } ---> { b: 3, c: 4 } ---> { d: 5 } ---> Object.prototype ---> null
+
+console.log(o.d); // 5
+
+VM18:17 5
+undefined
+const parent = {
+  value: 2,
+  method() {
+    return this.value + 1;
+  },
+};
+
+console.log(parent.method()); // 3
+// When calling parent.method in this case, 'this' refers to parent
+
+// child is an object that inherits from parent
+const child = {
+  __proto__: parent,
+};
+console.log(child.method()); // 3
+// When child.method is called, 'this' refers to child.
+// So when child inherits the method of parent,
+// The property 'value' is sought on child. However, since child
+// doesn't have an own property called 'value', the property is
+// found on the [[Prototype]], which is parent.value.
+
+child.value = 4; // assign the value 4 to the property 'value' on child.
+// This shadows the 'value' property on parent.
+// The child object now looks like:
+// { value: 4, __proto__: { value: 2, method: [Function] } }
+console.log(child.method()); // 5
+// Since child now has the 'value' property, 'this.value' means
+// child.value instead
+
+VM22:8 3
+VM22:15 3
+VM22:26 5
+undefined
+// A constructor function
+function Box(value) {
+  this.value = value;
+}
+
+// Properties all boxes created from the Box() constructor
+// will have
+Box.prototype.getValue = function () {
+  return this.value;
+};
+
+const boxes = [new Box(1), new Box(2), new Box(3)];
+
+ƒ () {
+  return this.value;
+}
+const boxPrototype = {
+  getValue() {
+    return this.value;
+  },
+};
+
+const boxes = [
+  { value: 1, __proto__: boxPrototype },
+  { value: 2, __proto__: boxPrototype },
+  { value: 3, __proto__: boxPrototype },
+];
+
+undefined
+const boxes = [
+  { value: 1, getValue() { return this.value; } },
+  { value: 2, getValue() { return this.value; } },
+  { value: 3, getValue() { return this.value; } },
+];
+
+undefined
+class Box {
+  constructor(value) {
+    this.value = value;
+  }
+
+  // Methods are created on Box.prototype
+  getValue() {
+    return this.value;
+  }
+}
+
+VM38:1 Uncaught SyntaxError: Identifier 'Box' has already been declared
+function Box(value) {
+  this.value = value;
+}
+Box.prototype.getValue = function () {
+  return this.value;
+};
+const box = new Box(1);
+
+// Mutate Box.prototype after an instance has already been created
+Box.prototype.getValue = function () {
+  return this.value + 1;
+};
+box.getValue(); // 2
+
+2
+// Object literals (without the `__proto__` key) automatically
+// have `Object.prototype` as their `[[Prototype]]`
+const object = { a: 1 };
+Object.getPrototypeOf(object) === Object.prototype; // true
+
+// Array literals automatically have `Array.prototype` as their `[[Prototype]]`
+const array = [1, 2, 3];
+Object.getPrototypeOf(array) === Array.prototype; // true
+
+// RegExp literals automatically have `RegExp.prototype` as their `[[Prototype]]`
+const regexp = /abc/;
+Object.getPrototypeOf(regexp) === RegExp.prototype; // true
+
+true
+const array = new Array(1, 2, 3);
+const regexp = new RegExp("abc");
+
+undefined
+Number.prototype + 1; // 1
+Array.prototype.map((x) => x + 1); // []
+String.prototype + "a"; // "a"
+RegExp.prototype.source; // "(?:)"
+Function.prototype(); // Function.prototype is a no-op function by itself
+
+undefined
+Map.prototype.get(1);
+// Uncaught TypeError: get method called on incompatible Map.prototype
+
+VM58:1 Uncaught TypeError: Method Map.prototype.get called on incompatible receiver #<Map>
+    at Map.get (<anonymous>)
+    at <anonymous>:1:15
+(anonymous) @ VM58:1
+function Constructor() {}
+
+const obj = new Constructor();
+// obj ---> Constructor.prototype ---> Object.prototype ---> null
+
+undefined
+function Base() {}
+function Derived() {}
+// Set the `[[Prototype]]` of `Derived.prototype`
+// to `Base.prototype`
+Object.setPrototypeOf(Derived.prototype, Base.prototype);
+
+const obj = new Derived();
+// obj ---> Derived.prototype ---> Base.prototype ---> Object.prototype ---> null
+
+Base {constructor: ƒ}
+class Base {}
+class Derived extends Base {}
+
+const obj = new Derived();
+// obj ---> Derived.prototype ---> Base.prototype ---> Object.prototype ---> null
+
+VM74:1 Uncaught SyntaxError: Identifier 'Base' has already been declared
+function doSomething() {}
+console.log(doSomething.prototype);
+// It does not matter how you declare the function; a
+// function in JavaScript will always have a default
+// prototype property — with one exception: an arrow
+// function doesn't have a default prototype property:
+const doSomethingFromArrowFunction = () => {};
+console.log(doSomethingFromArrowFunction.prototype);
+
+VM78:2 {constructor: ƒ}
+VM78:8 undefined
+undefined
+function doSomething() {}
+doSomething.prototype.foo = "bar";
+console.log(doSomething.prototype);
+
+VM82:3 {foo: 'bar', constructor: ƒ}
+undefined
+function doSomething() {}
+doSomething.prototype.foo = "bar"; // add a property onto the prototype
+const doSomeInstancing = new doSomething();
+doSomeInstancing.prop = "some value"; // add a property onto the object
+console.log(doSomeInstancing);
+
+VM86:5 doSomething {prop: 'some value'}
+undefined
+function doSomething() {}
+doSomething.prototype.foo = "bar";
+const doSomeInstancing = new doSomething();
+doSomeInstancing.prop = "some value";
+console.log("doSomeInstancing.prop:     ", doSomeInstancing.prop);
+console.log("doSomeInstancing.foo:      ", doSomeInstancing.foo);
+console.log("doSomething.prop:          ", doSomething.prop);
+console.log("doSomething.foo:           ", doSomething.foo);
+console.log("doSomething.prototype.prop:", doSomething.prototype.prop);
+console.log("doSomething.prototype.foo: ", doSomething.prototype.foo);
+
+VM90:5 doSomeInstancing.prop:      some value
+VM90:6 doSomeInstancing.foo:       bar
+VM90:7 doSomething.prop:           undefined
+VM90:8 doSomething.foo:            undefined
+VM90:9 doSomething.prototype.prop: undefined
+VM90:10 doSomething.prototype.foo:  bar
+undefined
+const o = { a: 1 };
+// The newly created object o has Object.prototype as its [[Prototype]]
+// Object.prototype has null as its prototype.
+// o ---> Object.prototype ---> null
+
+const b = ["yo", "whadup", "?"];
+// Arrays inherit from Array.prototype
+// (which has methods indexOf, forEach, etc.)
+// The prototype chain looks like:
+// b ---> Array.prototype ---> Object.prototype ---> null
+
+function f() {
+  return 2;
+}
+// Functions inherit from Function.prototype
+// (which has methods call, bind, etc.)
+// f ---> Function.prototype ---> Object.prototype ---> null
+
+const p = { b: 2, __proto__: o };
+// It is possible to point the newly created object's [[Prototype]] to
+// another object via the __proto__ literal property. (Not to be confused
+// with Object.prototype.__proto__ accessors)
+// p ---> o ---> Object.prototype ---> null
+
+undefined
+function Graph() {
+  this.vertices = [];
+  this.edges = [];
+}
+
+Graph.prototype.addVertex = function (v) {
+  this.vertices.push(v);
+};
+
+const g = new Graph();
+// g is an object with own properties 'vertices' and 'edges'.
+// g.[[Prototype]] is the value of Graph.prototype when new Graph() is executed.
+
+ƒ (v) {
+  this.vertices.push(v);
+}
+const a = { a: 1 };
+// a ---> Object.prototype ---> null
+
+const b = Object.create(a);
+// b ---> a ---> Object.prototype ---> null
+console.log(b.a); // 1 (inherited)
+
+const c = Object.create(b);
+// c ---> b ---> a ---> Object.prototype ---> null
+
+const d = Object.create(null);
+// d ---> null (d is an object that has null directly as its prototype)
+console.log(d.hasOwnProperty);
+// undefined, because d doesn't inherit from Object.prototype
+
+VM102:6 1
+VM102:13 undefined
+undefined
+class Rectangle {
+  constructor(height, width) {
+    this.name = "Rectangle";
+    this.height = height;
+    this.width = width;
+  }
+}
+
+class FilledRectangle extends Rectangle {
+  constructor(height, width, color) {
+    super(height, width);
+    this.name = "Filled rectangle";
+    this.color = color;
+  }
+}
+
+const filledRectangle = new FilledRectangle(5, 10, "blue");
+// filledRectangle ---> FilledRectangle.prototype ---> Rectangle.prototype ---> Object.prototype ---> null
+
+undefined
+const obj = { a: 1 };
+const anotherObj = { b: 2 };
+Object.setPrototypeOf(obj, anotherObj);
+// obj ---> anotherObj ---> Object.prototype ---> null
+
+{a: 1}
+const obj = {};
+// DON'T USE THIS: for example only.
+obj.__proto__ = { barProp: "bar val" };
+obj.__proto__.__proto__ = { fooProp: "foo val" };
+console.log(obj.fooProp);
+console.log(obj.barProp);
+
+VM114:5 foo val
+VM114:6 bar val
+undefined
+function Graph() {
+  this.vertices = [];
+  this.edges = [];
+}
+
+Graph.prototype.addVertex = function (v) {
+  this.vertices.push(v);
+};
+
+const g = new Graph();
+// g ---> Graph.prototype ---> Object.prototype ---> null
+
+g.hasOwnProperty("vertices"); // true
+Object.hasOwn(g, "vertices"); // true
+
+g.hasOwnProperty("nope"); // false
+Object.hasOwn(g, "nope"); // false
+
+g.hasOwnProperty("addVertex"); // false
+Object.hasOwn(g, "addVertex"); // false
+
+Object.getPrototypeOf(g).hasOwnProperty("addVertex"); // true
+
+true
